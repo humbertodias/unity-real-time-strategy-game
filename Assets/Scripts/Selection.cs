@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Selection : MonoBehaviour {    
-    // Selection rectangle
+
+	// Selection rectangle
     Vector2 start = new Vector2(0, 0);
     Vector2 cur = new Vector2(0, 0);
     bool visible = false;
