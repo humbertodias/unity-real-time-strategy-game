@@ -6,7 +6,7 @@ Unity Real Time Strategy Game following the tutorial:
 
 # Prerequires
 
-1. [Unity](https://unity3d.com/pt/get-unity/download) 2019.1.0f2+
+1. [Unity](https://unity3d.com/pt/get-unity/download) 2020.3.8f1+
 
 # Game
 
