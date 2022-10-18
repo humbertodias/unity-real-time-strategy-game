@@ -1,10 +1,10 @@
-#/bin/bash
+#/bin/sh
 
 download_and_run(){
 
-    GIT_USERNAME="${1:-humbertodias}"
-    GIT_REPOSITORY="${2:-unity-real-time-strategy-game}"
-    TAG="${3:-v0.1}"
+    GIT_USERNAME="$1"
+    GIT_REPOSITORY="$2"
+    TAG="$3"
 
     echo "Downloading $GIT_USERNAME/$GIT_REPOSITORY with tag $TAG"
 
