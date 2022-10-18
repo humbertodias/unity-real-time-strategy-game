@@ -16,7 +16,7 @@ Unity Real Time Strategy Game following the tutorial:
 
 ### Web
 
-https://humbertodias.github.io/unity-real-time-strategy-game
+[Play](https://humbertodias.github.io/unity-real-time-strategy-game)
 
 
 ### Desktop
