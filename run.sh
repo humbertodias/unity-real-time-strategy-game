@@ -17,10 +17,11 @@ download_and_run(){
         echo 'Mac OS X'
 
         curl -s -L --output - "https://github.com/$GIT_USERNAME/$GIT_REPOSITORY/releases/download/$TAG/StandaloneOSX.zip" | bsdtar -xf-
-
-        cd ./StandaloneOSX.app/Contents/MacOS
+        
+        xattr -d com.apple.quarantine StandaloneOSX.app
+        cd StandaloneOSX.app/Contents/MacOS
         chmod +x *
-        find . -executable -type f -exec "{}" +;
+        find . -type f -exec "{}" +;
 
         ;;
 
