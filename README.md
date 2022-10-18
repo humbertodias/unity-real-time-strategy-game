@@ -22,7 +22,7 @@ https://humbertodias.github.io/unity-real-time-strategy-game
 ### Desktop
 
 ```sh
-curl https://raw.githubusercontent.com/humbertodias/unity-real-time-strategy-game/main/run.sh | bash
+curl https://raw.githubusercontent.com/humbertodias/unity-real-time-strategy-game/main/run.sh | sh
 ```
 
 # References
