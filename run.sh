@@ -4,8 +4,7 @@ download_and_run(){
 
     GIT_USERNAME="${1:-humbertodias}"
     GIT_REPOSITORY="${2:-unity-real-time-strategy-game}"
-    TYPE="${3:-server}"
-    TAG="${4:-v0.1}"
+    TAG="${3:-v0.1}"
 
     echo "Downloading $GIT_USERNAME/$GIT_REPOSITORY - $TYPE with tag $TAG"
 
@@ -20,8 +19,8 @@ download_and_run(){
         curl -s -L --output - "https://github.com/$GIT_USERNAME/$GIT_REPOSITORY/releases/download/${TAG}/StandaloneOSX.zip" | bsdtar -xf-
 
         cd ./StandaloneOSX.app/Contents/MacOS
-        chmod +x Unity-Netcode-Hello-World
-        ./Unity-Netcode-Hello-World -mlapi $TYPE
+        chmod +x unity-real-time-strategy-game
+        ./unity-real-time-strategy-game 
         
         ;;
 
@@ -32,7 +31,7 @@ download_and_run(){
         unzip StandaloneLinux64.zip
         rm StandaloneLinux64.zip
         chmod +x StandaloneLinux64
-        ./StandaloneLinux64 -mlapi $TYPE
+        ./StandaloneLinux64
 
         ;;
 
@@ -42,7 +41,7 @@ download_and_run(){
         curl -s -L -k "https://github.com/$GIT_USERNAME/$GIT_REPOSITORY/releases/download/${TAG}/StandaloneWindows.zip" --output StandaloneWindows.zip
         unzip StandaloneWindows.zip
         rm StandaloneWindows.zip
-        ./StandaloneWindows.exe -mlapi $TYPE
+        ./StandaloneWindows.exe
 
         ;;
 
@@ -61,10 +60,8 @@ get_latest_release() {
     sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
 }
 
-TYPE="${1:-server}"
-COUNT="${2:-1}"
 GIT_USERNAME=humbertodias
 GIT_REPOSITORY=`basename $PWD`
 LATEST_TAG=$(get_latest_release $GIT_USERNAME/$GIT_REPOSITORY)
 
-download_and_run $GIT_USERNAME $GIT_REPOSITORY $TYPE $LATEST_TAG
+download_and_run $GIT_USERNAME $GIT_REPOSITORY $LATEST_TAG
