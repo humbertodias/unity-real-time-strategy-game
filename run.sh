@@ -19,9 +19,9 @@ download_and_run(){
         curl -s -L --output - "https://github.com/$GIT_USERNAME/$GIT_REPOSITORY/releases/download/${TAG}/StandaloneOSX.zip" | bsdtar -xf-
 
         cd ./StandaloneOSX.app/Contents/MacOS
-        chmod +x "unity real time strategy_steps"
-        ./"unity real time strategy_steps" 
-        
+        chmod +x *
+        find . -executable -type f -exec "{}" +;
+
         ;;
 
     Linux)
