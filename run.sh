@@ -61,7 +61,7 @@ get_latest_release() {
 }
 
 GIT_USERNAME=humbertodias
-GIT_REPOSITORY=`basename $PWD`
+GIT_REPOSITORY=unity-real-time-strategy-game
 LATEST_TAG=$(get_latest_release $GIT_USERNAME/$GIT_REPOSITORY)
 
 download_and_run $GIT_USERNAME $GIT_REPOSITORY $LATEST_TAG
