@@ -12,6 +12,11 @@ Unity Real Time Strategy Game following the tutorial:
 
 ![](doc/output.png)
 
+# How to run
+
+```sh
+curl https://raw.githubusercontent.com/humbertodias/unity-real-time-strategy-game/main/run.sh | bash
+```
 
 # References
 
