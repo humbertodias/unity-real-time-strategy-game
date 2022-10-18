@@ -6,7 +6,9 @@ download_and_run(){
     GIT_REPOSITORY="${2:-unity-real-time-strategy-game}"
     TAG="${3:-v0.1}"
 
-    echo "Downloading $GIT_USERNAME/$GIT_REPOSITORY - $TYPE with tag $TAG"
+    echo "Downloading $GIT_USERNAME/$GIT_REPOSITORY with tag $TAG"
+
+    exit
 
     tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     cd $tmp_dir
