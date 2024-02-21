@@ -1,3 +1,5 @@
+[![gh-pages](https://github.com/humbertodias/unity-real-time-strategy-game/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/humbertodias/unity-real-time-strategy-game/actions/workflows/gh-pages.yml)
+
 # Unity RTS Game
 
 Unity Real Time Strategy Game following the tutorial:
@@ -21,7 +23,7 @@ Unity Real Time Strategy Game following the tutorial:
 
 ### Desktop
 
-```sh
+```shell
 curl https://raw.githubusercontent.com/humbertodias/unity-real-time-strategy-game/main/run.sh | sh
 ```
 
