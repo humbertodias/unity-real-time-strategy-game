@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         unityVersion:
-          - 2023.2.2f1
+          - 6000.0.32f1
         targetPlatform:
           - StandaloneLinux64
           #- StandaloneWindows64
@@ -52,7 +52,7 @@ jobs:
 
       # Build
       - name: Build project
-        uses: game-ci/unity-builder@v2
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
