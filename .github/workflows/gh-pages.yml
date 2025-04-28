@@ -1,4 +1,4 @@
-name: CD
+name: pages
 
 on:
   push:
