@@ -1,47 +1,55 @@
-name: gh-pages
+name: CD
 
 on:
- push:
-   tags:
-     - '*'
- workflow_dispatch:
-   branches:
-     - main
-  
-  
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    branches:
+      - main
+
 jobs:
   build:
-    name: Build - ${{ matrix.targetPlatform }} - Unity ${{ matrix.unityVersion }}
+    name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     environment: Unity build
     strategy:
       fail-fast: false
       matrix:
         unityVersion:
-          - 2022.3.8f1
+          - 6000.0.23f1
         targetPlatform:
           - WebGL
-    steps:
+          # Uncomment for additional platforms
+          # - StandaloneWindows
+          # - StandaloneWindows64
+          # - StandaloneLinux64
+          # - StandaloneOSX
+          # - Android
+          # - iOS
 
-      # Checkout
+    steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           lfs: true
-          path: .
-    
-      # Cache
-      - uses: actions/cache@v3
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Unity-${{ runner.os }}-Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-
-      # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v3
+            Unity-${{ runner.os }}-Library-
+            Unity-Library-
+
+      - name: Build Unity project
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
@@ -49,4 +57,4 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build/${{ matrix.targetPlatform }}/WebGL # The folder the action should deploy.          
+          folder: build/${{ matrix.targetPlatform }}/WebGL
