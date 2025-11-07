@@ -1,4 +1,5 @@
-[![gh-pages](https://github.com/humbertodias/unity-real-time-strategy-game/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/humbertodias/unity-real-time-strategy-game/actions/workflows/gh-pages.yml)
+[![Build](https://github.com/humbertodias/unity-real-time-strategy-game/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/humbertodias/unity-real-time-strategy-game/actions/workflows/gh-pages.yml)
+![GitHub all releases](https://img.shields.io/github/downloads/humbertodias/unity-real-time-strategy-game/total)
 
 # Unity RTS Game
 
