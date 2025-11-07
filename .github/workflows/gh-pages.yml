@@ -16,8 +16,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Unity versions: https://game.ci/docs/docker/versions/
         unityVersion:
-          - 6000.0.23f1
+          - 6000.2.10f1
         targetPlatform:
           - WebGL
           # Uncomment for additional platforms
@@ -30,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           lfs: true
