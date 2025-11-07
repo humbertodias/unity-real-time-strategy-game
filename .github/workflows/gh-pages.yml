@@ -4,9 +4,9 @@ on:
   push:
     tags:
       - '*'
-  workflow_dispatch:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
