@@ -4,9 +4,9 @@ on:
  push:
    tags:
      - 'v*'
- workflow_dispatch:
    branches:
      - main
+ workflow_dispatch:
   
 jobs:
   build:
@@ -16,8 +16,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Unity versions: https://game.ci/docs/docker/versions/
         unityVersion:
-          - 6000.0.23f1
+          - 6000.2.10f1
         targetPlatform:
           - WebGL
           - StandaloneLinux64
