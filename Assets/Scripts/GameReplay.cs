@@ -32,6 +32,10 @@ public class GameReplay : MonoBehaviour {
         try {
             string json = File.ReadAllText(filepath);
             recordingData = JsonUtility.FromJson<RecordingData>(json);
+            if (recordingData == null || recordingData.events == null) {
+                Debug.LogError("Invalid recording data format");
+                return false;
+            }
             Debug.Log("Recording loaded: " + recordingData.events.Count + " events, Duration: " + recordingData.totalDuration + "s");
             return true;
         } catch (System.Exception e) {
@@ -155,6 +159,8 @@ public class GameReplay : MonoBehaviour {
 
     private void SimulateLeftClickDown(Vector3 worldPos) {
         // Check if clicking on a castle to spawn units
+        if (Camera.main == null) return;
+        
         Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(worldPos));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)) {
@@ -166,7 +172,7 @@ public class GameReplay : MonoBehaviour {
     }
 
     private void SimulateLeftClickUp(Vector3 worldPos) {
-        // Selection is handled by the Selection component
+        // Selection is handled by the Selection component - no action needed
     }
 
     private void SimulateRightClick(Vector3 worldPos) {
@@ -194,16 +200,14 @@ public class GameReplay : MonoBehaviour {
     }
 
     private void ProcessSelection(string jsonData) {
-        SelectionEvent selectionEvent = JsonUtility.FromJson<SelectionEvent>(jsonData);
-        // The actual selection is handled by the Selection component
-        // This event is mainly for tracking purposes
+        // The actual selection is handled by the Selection component during replay
+        // This event is recorded for completeness but requires no replay action
     }
 
     private void ProcessUnitSpawn(string jsonData) {
-        UnitSpawnEvent spawnEvent = JsonUtility.FromJson<UnitSpawnEvent>(jsonData);
-        Vector3 position = new Vector3(spawnEvent.x, spawnEvent.y, spawnEvent.z);
-        // Unit spawning is triggered by castle clicks, so we don't need to recreate units here
+        // Unit spawning is triggered by castle clicks during replay
         // The recording captures the click events that trigger spawns
+        // No separate spawn action needed as castle clicks are replayed
     }
 
     public string[] GetAvailableRecordings() {

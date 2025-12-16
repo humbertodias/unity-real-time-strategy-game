@@ -17,21 +17,18 @@ public class RecordReplayUI : MonoBehaviour {
     private bool showRecordingsList = false;
     
     void Start() {
-        // Ensure recorder and replay instances exist
-        GameObject recorderObj = GameObject.Find("GameRecorder");
-        if (recorderObj == null) {
-            recorderObj = new GameObject("GameRecorder");
+        // Get or create recorder instance
+        recorder = GameRecorder.Instance;
+        if (recorder == null) {
+            GameObject recorderObj = new GameObject("GameRecorder");
             recorder = recorderObj.AddComponent<GameRecorder>();
-        } else {
-            recorder = recorderObj.GetComponent<GameRecorder>();
         }
         
-        GameObject replayObj = GameObject.Find("GameReplay");
-        if (replayObj == null) {
-            replayObj = new GameObject("GameReplay");
+        // Get or create replay instance
+        replay = GameReplay.Instance;
+        if (replay == null) {
+            GameObject replayObj = new GameObject("GameReplay");
             replay = replayObj.AddComponent<GameReplay>();
-        } else {
-            replay = replayObj.GetComponent<GameReplay>();
         }
         
         RefreshRecordingsList();

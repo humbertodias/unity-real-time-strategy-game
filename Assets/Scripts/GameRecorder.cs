@@ -23,8 +23,12 @@ public class GameRecorder : MonoBehaviour {
         }
         
         recordingsPath = Path.Combine(Application.persistentDataPath, "Recordings");
-        if (!Directory.Exists(recordingsPath)) {
-            Directory.CreateDirectory(recordingsPath);
+        try {
+            if (!Directory.Exists(recordingsPath)) {
+                Directory.CreateDirectory(recordingsPath);
+            }
+        } catch (System.Exception e) {
+            Debug.LogError("Failed to create recordings directory: " + e.Message);
         }
     }
 
@@ -114,11 +118,15 @@ public class GameRecorder : MonoBehaviour {
     }
 
     private void SaveRecording() {
-        string json = JsonUtility.ToJson(recordingData, true);
-        string filename = "recording_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".json";
-        string filepath = Path.Combine(recordingsPath, filename);
-        File.WriteAllText(filepath, json);
-        Debug.Log("Recording saved to: " + filepath);
+        try {
+            string json = JsonUtility.ToJson(recordingData, true);
+            string filename = "recording_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".json";
+            string filepath = Path.Combine(recordingsPath, filename);
+            File.WriteAllText(filepath, json);
+            Debug.Log("Recording saved to: " + filepath);
+        } catch (System.Exception e) {
+            Debug.LogError("Failed to save recording: " + e.Message);
+        }
     }
 
     public string GetRecordingsPath() {
