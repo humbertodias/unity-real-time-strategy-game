@@ -29,13 +29,13 @@ jobs:
 
       # Checkout
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           path: .
     
       # Cache
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
@@ -61,7 +61,7 @@ jobs:
           folder: build/${{ matrix.targetPlatform }}/WebGL # The folder the action should deploy.
 
       - name: Deploy Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
@@ -72,7 +72,7 @@ jobs:
           mkdir -p ${{ matrix.targetPlatform }}
 
       - name: Download Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: ${{ matrix.targetPlatform }}
