@@ -16,6 +16,11 @@ public class UnitSpawner : MonoBehaviour {
         float y = pos.y;
         float z = pos.z + Random.Range(-1.0f, 1.0f) * spawnRange;
         float angle = Random.Range(0.0f, 360.0f);
-        Instantiate(unit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
+        GameObject spawnedUnit = (GameObject)Instantiate(unit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
+        
+        // Record the spawn event if recorder is active
+        if (GameRecorder.Instance != null && spawnedUnit != null) {
+            GameRecorder.Instance.RecordUnitSpawn(spawnedUnit.tag, spawnedUnit.transform.position, angle);
+        }
     }
 }
